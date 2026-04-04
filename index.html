@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru"> 
+    <head>
+            <meta charset="UTF-8">
+            <link rel='stylesheet' href="style.css">
+            <title>Habit-tracker</title>
+    </head>
+    <body>
+    <h1>Привычки</h1>
+
+    <button id="btn-add" type="button" class="Add__button">Добавить привычку</button>
+    <ul id="habit-list" ></ul>
+
+    <div class="modal-overlay">
+        <div class="modal">
+            <h3 class="modal__h3">Название привычки</h3>
+            <input id="input" class="modal__input" type="text" placeholder="Название привычки">
+            <button class="modal__button" id="btn-save">Добавить</button>
+            <button class="modal__button" id="btn-cancel">Отменить</button>
+        </div>
+    </div>    
+    
+    <script src="app.js"></script>
+    </body>
