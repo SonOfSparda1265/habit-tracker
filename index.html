@@ -2,23 +2,32 @@
 <html lang="ru"> 
     <head>
             <meta charset="UTF-8">
-            <link rel='stylesheet' href="style.css">
+            <link href="style.css" rel='stylesheet'>
+            <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel='stylesheet'>
             <title>Habit-tracker</title>
     </head>
     <body>
-    <h1>Привычки</h1>
+    <div class="header">
+        <h1>Привычки</h1>
+        <button id="btn-add" type="button" class="add-button">+ Добавить</button>
+    </div>
+    <div id="counter">
+        <span id="counter-text">выполнено: 0 / 0</span>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
 
-    <div id="counter">counter</div>
-
-    <button id="btn-add" type="button" class="Add__button">Добавить привычку</button>
     <ul id="habit-list" ></ul>
 
     <div class="modal-overlay">
         <div class="modal">
             <h3 class="modal__h3">Название привычки</h3>
             <input id="input" class="modal__input" type="text" placeholder="Название привычки">
+            <div class="modal-actions">
             <button class="modal__button" id="btn-save">Добавить</button>
             <button class="modal__button" id="btn-cancel">Отменить</button>
+            </div>
         </div>
     </div>    
     

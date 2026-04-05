@@ -10,14 +10,18 @@ function createHabitItem(habitText){
         })
     let buttonClear = document.createElement("button");
         buttonClear.textContent="удалить";
+        buttonClear.className = "delete-btn";
         buttonClear.addEventListener('click', function() {
                 li.remove();
                 saveHabits();
         });
-        li.appendChild(checkbox);
-        li.appendChild(span);
-        li.appendChild(buttonClear);
-        list.appendChild(li); 
+    let habitLeft=document.createElement("div")
+        habitLeft.appendChild (checkbox);
+        habitLeft.appendChild(span);
+        
+    li.appendChild(habitLeft)
+    li.appendChild(buttonClear);
+    list.appendChild(li); 
 
 }
 function checkDayReset(){
@@ -56,7 +60,10 @@ function updateCounter() {
         all++;
         if (checkbox.checked) count++;
     });
-    document.getElementById('counter').textContent=("выполнено:" + count + "/" + all);
+    document.getElementById('counter-text').textContent = "выполнено: " + count + " / " + all;
+    let pct = all > 0 ? Math.round(count / all * 100) : 0;
+    document.getElementById('progress-fill').style.width = pct + '%';   
+
 };
 let list = document.getElementById('habit-list');
 
