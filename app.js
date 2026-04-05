@@ -3,9 +3,9 @@ function createHabitItem(habitText){
         li.dataset.name = habitText;
     let span = document.createElement("span");
         span.textContent = habitText;
-    let checkbox = document.createElement("input")
+    let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-    let buttonClear = document.createElement("button")
+    let buttonClear = document.createElement("button");
         buttonClear.textContent="удалить";
         buttonClear.addEventListener('click', function() {
                 li.remove();
@@ -17,13 +17,25 @@ function createHabitItem(habitText){
         list.appendChild(li); 
 
 }
+function checkDayReset(){
+    let today = new Date().toLocaleDateString();
+    let lastDate = localStorage.getItem('lastDate');
+    if (today != lastDate){
+        localStorage.setItem('lastDate', today);
+        document.querySelectorAll("input").forEach(function(checkbox){
+        checkbox.checked = false;
+        });
+        console.log('новый день');
+    }  
+    console.log(today, lastDate);
+};
 function saveHabits(){
     let data = [];
         document.querySelectorAll("li").forEach(function(li){
             data.push(li.dataset.name);
         });
-    localStorage.setItem('tasks', JSON.stringify(data))
-}
+    localStorage.setItem('tasks', JSON.stringify(data));
+};
 function loadHabits(){
     let saved = localStorage.getItem("tasks");
     if (!saved) return;
@@ -32,7 +44,7 @@ function loadHabits(){
             createHabitItem(habitText);
 
     });
-}
+};
 let list = document.getElementById('habit-list');
 
 let button = document.getElementById('btn-add').addEventListener('click', function() { 
@@ -57,3 +69,4 @@ document.getElementById("btn-save").addEventListener('click', function() {
 });
 
 loadHabits();
+checkDayReset();
