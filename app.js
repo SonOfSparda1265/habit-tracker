@@ -5,6 +5,9 @@ function createHabitItem(habitText){
         span.textContent = habitText;
     let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
+        checkbox.addEventListener('change',function(){
+        updateCounter();
+        })
     let buttonClear = document.createElement("button");
         buttonClear.textContent="удалить";
         buttonClear.addEventListener('click', function() {
@@ -27,7 +30,7 @@ function checkDayReset(){
         });
         console.log('новый день');
     }  
-    console.log(today, lastDate);
+    updateCounter();
 };
 function saveHabits(){
     let data = [];
@@ -42,8 +45,18 @@ function loadHabits(){
     let data = JSON.parse(saved);
         data.forEach(function(habitText){
             createHabitItem(habitText);
-
     });
+    updateCounter();
+};
+function updateCounter() {
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]'); 
+    let count = 0;
+    let all=0;
+    checkboxes.forEach(function(checkbox){
+        all++;
+        if (checkbox.checked) count++;
+    });
+    document.getElementById('counter').textContent=("выполнено:" + count + "/" + all);
 };
 let list = document.getElementById('habit-list');
 
@@ -61,12 +74,15 @@ document.getElementById("btn-save").addEventListener('click', function() {
     let habitText = document.querySelector('.modal__input').value;
     if (!habitText || habitText.trim() === "") return;
     createHabitItem(habitText);
+    updateCounter();
     saveHabits();
     let modal = document.querySelector('.modal-overlay');
         modal.classList.remove('active');
     let textInpu = document.querySelector('.modal__input');
         textInpu.value = '';
+    
 });
 
 loadHabits();
 checkDayReset();
+
